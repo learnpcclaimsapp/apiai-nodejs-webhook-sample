@@ -40,8 +40,20 @@ app.post('/webhook', function (req, res) {
 
   // the most basic response
   res.status(200).json({
-    textToSpeech: webhookReply,
-    displayText: webhookReply
+  payload: {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: webhookReply
+            }
+          }
+        ]
+      }
+    }
+  }
   })
 })
 
